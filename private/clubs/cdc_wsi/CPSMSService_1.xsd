@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://type.ws.cdc.tecnotree.com/CDCCommonType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://type.ws.cdc.tecnotree.com/CDCCommonType/" xmlns:cns="http://type.ws.cdc.tecnotree.com/CDCCommonType" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <xsd:complexType name="GenericResponseType">
+    <xsd:sequence>
+      <xsd:element name="transId" type="xsd:string"/>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubscriptionResponseType">
+    <xsd:sequence>
+      <xsd:element name="providerId" type="xsd:string"/>
+      <xsd:element name="originid" type="xsd:string"/>
+      <xsd:element name="msisdn" type="xsd:string"/>
+      <xsd:element name="subscriptionId" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ShortMessageType">
+    <xsd:sequence>
+      <xsd:element name="messageType" nillable="true" type="xsd:string"/>
+      <xsd:element name="messageHeader" nillable="true" type="xsd:string"/>
+      <xsd:element name="messageBody" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AuthenticationRequestType">
+    <xsd:sequence>
+      <xsd:element name="userId" type="xsd:string"/>
+      <xsd:element name="password" type="xsd:string"/>
+      <xsd:element name="moduleNumber" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AuthenticationResponseType">
+    <xsd:sequence>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+      <xsd:element name="moduleNumber" type="xsd:int"/>
+      <xsd:element name="rightsTypeId" type="xsd:int"/>
+      <xsd:element name="rightsType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ServiceRequestType">
+    <xsd:sequence>
+      <xsd:element name="authenticationRequest" type="cns:AuthenticationRequestType"/>
+      <xsd:element minOccurs="0" name="pageRequest" nillable="true" type="cns:PageRequestType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ServiceResponseType">
+    <xsd:sequence>
+      <xsd:element name="responseCode" type="xsd:int"/>
+      <xsd:element name="responseMessage" type="xsd:string"/>
+      <xsd:element name="authenticationResponse" type="cns:AuthenticationResponseType"/>
+      <xsd:element minOccurs="0" name="pageResponse" nillable="true" type="cns:PageResponseType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PageRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="pageNumber" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PageResponseType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="numberOfRecords" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="totalNumberOfRecords" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="currentPage" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="totalPage" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DeliverResponseType">
+    <xsd:sequence>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubmitResponseType">
+    <xsd:sequence>
+      <xsd:element name="transId" nillable="true" type="xsd:string"/>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DeliverContentResponseType">
+    <xsd:sequence>
+      <xsd:element name="chargeFlag" type="xsd:string"/>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+      <xsd:element name="responseMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="bonusChrgDate">
+    <xsd:sequence>
+      <xsd:element name="bonusChrgFromDate" type="xsd:date"/>
+      <xsd:element minOccurs="0" name="bonusChrgToDate" nillable="true" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="bonusChrgDates">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="bonusChrgDate" nillable="true" type="cns:bonusChrgDate"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="bonusChrgDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="bonusChrgType" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="bonusChrgRetries" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="bonusChrgDates" nillable="true" type="cns:bonusChrgDates"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="tariffDetail">
+    <xsd:sequence>
+      <xsd:element name="providerId" type="xsd:string"/>
+      <xsd:element name="applicationId" type="xsd:int"/>
+      <xsd:element name="serviceId" type="xsd:int"/>
+      <xsd:element name="originId" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="tariff">
+    <xsd:sequence>
+      <xsd:element name="tariffId" type="xsd:int"/>
+      <xsd:element name="tariffDetail" type="cns:tariffDetail"/>
+      <xsd:element name="isSubscription" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bonusChrgDetails" nillable="true" type="cns:bonusChrgDetail"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="tariffList">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="tariff" type="cns:tariff"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="updateAllTariffRequestType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="tariffList" type="cns:tariffList"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://type.ws.cdc.tecnotree.com/CDCNotificationType" xmlns:tns="http://type.ws.cdc.tecnotree.com/CDCNotificationType" xmlns:cctp="http://type.ws.cdc.tecnotree.com/CDCCommonType" xmlns="http://type.ws.cdc.tecnotree.com/CDCNotificationType/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="http://type.ws.cdc.tecnotree.com/CDCCommonType" schemaLocation="CDCCommonType.xsd"/>
+  <!--Element Defination used in WSDL Messages-->
+  <xsd:element name="deliveryNotificationRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="transId" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="messageId" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+        <xsd:element name="from" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="to" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="status" type="xsd:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="tariffId" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+        <xsd:element name="price" type="xsd:double" minOccurs="0" maxOccurs="1" nillable="true"/>
+        <xsd:element name="errorCode" type="xsd:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="errorMessage" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="sendCPNotificationRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="subscriptionId" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="msisdn" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="shortcode" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="packageId" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="tariffId" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="price" type="xsd:double" minOccurs="0" maxOccurs="1" nillable="true"/>
+        <xsd:element name="operationDescription">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="ACTIVATION"/>
+              <xsd:enumeration value="RENEWAL"/>
+              <xsd:enumeration value="CANCELLATION"/>
+              <xsd:enumeration value="EXPIRY"/>
+              <xsd:enumeration value="MOCHARGE"/>
+              <xsd:enumeration value="MTCHARGE"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="notifyTo">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="PROVIDER"/>
+              <xsd:enumeration value="SUBSCRIBER"/>
+              <xsd:enumeration value="BOTH"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="errorCode" type="xsd:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+        <xsd:element name="errorMessage" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="deliveryNotificationResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="genericResponse" type="cctp:GenericResponseType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="sendCPNotificationResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="genericResponse" type="cctp:GenericResponseType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <!--Element Defination Ends-->
+</xsd:schema>

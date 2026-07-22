@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://type.ws.cdc.tecnotree.com/CDCSMSType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://type.ws.cdc.tecnotree.com/CDCSMSType/" xmlns:tns="http://type.ws.cdc.tecnotree.com/CDCSMSType" xmlns:cctp="http://type.ws.cdc.tecnotree.com/CDCCommonType" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <xsd:import namespace="http://type.ws.cdc.tecnotree.com/CDCCommonType" schemaLocation="CPSMSService_1.xsd"/>
+  <xsd:element name="deliverSMSRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="transId" type="xsd:string"/>
+        <xsd:element name="from" type="xsd:string"/>
+        <xsd:element name="to" type="xsd:string"/>
+        <xsd:element name="suffix" nillable="true" type="xsd:string"/>
+        <xsd:element name="requestDtime" type="xsd:string"/>
+        <xsd:element name="messageBody" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="deliverSMSResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="deliverResponse" type="cctp:DeliverResponseType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="submitSMSRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="transId" type="xsd:string"/>
+        <xsd:element name="messageId" nillable="true" type="xsd:string"/>
+        <xsd:element name="from" type="xsd:string"/>
+        <xsd:element name="to" type="xsd:string"/>
+        <xsd:element name="suffix" nillable="true" type="xsd:string"/>
+        <xsd:element name="requestDtime" nillable="true" type="xsd:string"/>
+        <xsd:element name="message" type="cctp:ShortMessageType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="submitSMSResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="submitResponse" type="cctp:SubmitResponseType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CPNotificationService" targetNamespace="http://ws.cdc.tecnotree.com/CPNotificationService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:cntp="http://type.ws.cdc.tecnotree.com/CDCNotificationType" xmlns:tns="http://ws.cdc.tecnotree.com/CPNotificationService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://type.ws.cdc.tecnotree.com/CPNotificationService/" xmlns:ctp="http://type.ws.cdc.tecnotree.com/CDCNotificationType">
+      <xsd:import namespace="http://type.ws.cdc.tecnotree.com/CDCNotificationType" schemaLocation="CDCNotificationType.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="deliveryNotificationRequest">
+    <wsdl:part element="cntp:deliveryNotificationRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="deliveryNotificationResponse">
+    <wsdl:part element="cntp:deliveryNotificationResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="CPNotificationService">
+    <wsdl:operation name="deliveryNotification">
+      <wsdl:input message="tns:deliveryNotificationRequest"/>
+      <wsdl:output message="tns:deliveryNotificationResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CPNotificationServiceSOAP" type="tns:CPNotificationService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="deliveryNotification">
+      <soap:operation soapAction="http://ws.cdc.tecnotree.com/CPNotificationService/deliveryNotification"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CPNotificationService">
+    <wsdl:port binding="tns:CPNotificationServiceSOAP" name="CPNotificationServiceSOAP">
+      <soap:address location="http://ws.cdc.tecnotree.com/CPNotificationService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

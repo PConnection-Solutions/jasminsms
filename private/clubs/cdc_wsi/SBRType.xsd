@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://type.ws.cdc.tecnotree.com/SBRType" xmlns:sbrt="http://type.ws.cdc.tecnotree.com/SBRType" xmlns="http://type.ws.cdc.tecnotree.com/SBRType/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cctp="http://type.ws.cdc.tecnotree.com/CDCCommonType">
+  <xsd:import namespace="http://type.ws.cdc.tecnotree.com/CDCCommonType" schemaLocation="CDCCommonType.xsd"/>
+  <!--Element Defination used in WSDL Messages-->
+  <xsd:element name="scheduleBulkSMSRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="messageId" type="xsd:string"/>
+        <xsd:element name="providerId" type="xsd:int"/>
+        <xsd:element name="shortCode" type="xsd:string"/>
+        <xsd:element name="packageId" type="xsd:int"/>
+        <xsd:element name="scheduledDateTime" type="xsd:string"/>
+        <xsd:element name="message" type="cctp:ShortMessageType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="scheduleBulkSMSResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="genericResponse" type="cctp:GenericResponseType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="submitBulkSMSRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="messageId" type="xsd:string"/>
+        <xsd:element name="providerId" type="xsd:int"/>
+        <xsd:element name="shortCode" type="xsd:string"/>
+        <xsd:element name="packageId" type="xsd:int"/>
+        <xsd:element name="message" type="cctp:ShortMessageType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="submitBulkSMSResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="genericResponse" type="cctp:GenericResponseType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BulkRequestService" targetNamespace="http://ws.cdc.tecnotree.com/BulkRequestService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ctp="http://type.ws.cdc.tecnotree.com/SBRType" xmlns:tns="http://ws.cdc.tecnotree.com/BulkRequestService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://ws.cdc.tecnotree.com/BulkRequestService/">
+      <xsd:import namespace="http://type.ws.cdc.tecnotree.com/SBRType" schemaLocation="SBRType.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="submitBulkSMSRequest">
+    <wsdl:part element="ctp:submitBulkSMSRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="submitBulkSMSResponse">
+    <wsdl:part element="ctp:submitBulkSMSResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="BulkRequestService">
+    <wsdl:operation name="submitBulkSMS">
+      <wsdl:input message="tns:submitBulkSMSRequest"/>
+      <wsdl:output message="tns:submitBulkSMSResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BulkRequestServiceSOAP" type="tns:BulkRequestService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submitBulkSMS">
+      <soap:operation soapAction="http://ws.cdc.tecnotree.com/BulkRequestService/submitBulkSMS"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BulkRequestService">
+    <wsdl:port binding="tns:BulkRequestServiceSOAP" name="BulkRequestServiceSOAP">
+      <soap:address location="http://ws.cdc.tecnotree.com/BulkRequestService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
