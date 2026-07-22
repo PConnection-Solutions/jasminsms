@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  jasmin_kannel_core:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: jasmin_monolito
+    ports:
+      - "13013:13013" # Tu sistema legacy enviará tráfico aquí
+      - "8990:8990"   # Para entrar con telnet a configurar Jasmin
+      - "1401:1401"   # El puerto interno que el puente PHP usa para enviar a Jasmin
+    restart: unless-stopped
+    volumes:
+      # Hacemos persistentes las carpetas internas que acabamos de crear en el Dockerfile
+      - jasmin_store_data:/etc/jasmin/store
+      - jasmin_logs_data:/var/log/jasmin
+
+volumes:
+  jasmin_store_data:
+  jasmin_logs_data:
